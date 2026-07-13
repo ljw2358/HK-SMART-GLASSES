@@ -2,92 +2,191 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HK Smart Vision</title>
-    <style>
-        body { 
-            background-color: #2e003e; 
-            color: #ffffff; 
-            font-family: 'Pretendard', sans-serif; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            margin: 0;
-            word-break: keep-all; /* 단어 깨짐 방지 */
-        }
-        #langContainer { position: absolute; top: 20px; right: 20px; }
-        #langSelector { font-size: 1.2rem; padding: 10px; background-color: #4b0082; color: #ffffff; border: 2px solid #ffeb3b; border-radius: 8px; }
-        .content-wrapper { max-width: 90%; width: 600px; text-align: center; }
-        h1 { font-size: 2.5rem; color: #ffeb3b; margin-top: 50px; }
-        h2 { font-size: 1.5rem; color: #ffffff; margin-bottom: 40px; }
-        .menu-item { margin-bottom: 30px; text-align: left; font-size: 1.2rem; line-height: 1.5; }
-        .menu-name { font-weight: bold; color: #ffeb3b; font-size: 1.4rem; display: block; }
-        #footer { margin-top: 50px; font-size: 1.2rem; color: #d4aaff; font-weight: bold; }
-    </style>
+    <title>HK Smart Vision - Global Official Platform</title>
 </head>
 <body>
 
-    <div id="langContainer">
-        <select id="langSelector" onchange="changeLanguage()">
-            <option value="ko">한국어</option>
-            <option value="en">English</option>
-            <option value="ja">日本語</option>
-            <option value="es">Español</option>
-        </select>
-    </div>
+<script>
+/**
+ * HK Smart Vision 글로벌 솔루션 공식 데이터
+ * Support@hkwb.world
+ */
+const HK_GLOBAL_DATA = {
+    "Contact": "Support@hkwb.world",
+    "Data": {
+        "Korean": [
+            ["Neural Auth", "뇌파 및 생체 신호를 활용한 가장 안전한 본인 인증입니다."],
+            ["Sync", "모든 기기와의 끊김 없는 실시간 데이터 동기화."],
+            ["Payment", "시선과 제스처만으로 이루어지는 차세대 결제."],
+            ["Sentiment", "대화 상대의 감정을 실시간으로 파악하여 소통 지원."],
+            ["Translation", "언어 장벽 없는 전 세계 실시간 통역."],
+            ["Management", "글라스 상태 및 연결 기기 통합 관리."],
+            ["Monitoring", "기기 가동 및 보안 시스템 실시간 추적."],
+            ["Energy Mgmt", "스마트 배터리 최적화를 통한 에너지 효율화."],
+            ["Vision AI", "고도화된 공간 인식 및 지능형 환경 정보 처리."],
+            ["HK Cloud", "개인 데이터를 안전하게 보관하는 전용 클라우드."]
+        ],
+        "English": [
+            ["Neural Auth", "Secure biometric authentication using brainwaves."],
+            ["Sync", "Seamless real-time synchronization across devices."],
+            ["Payment", "Next-gen payment via gaze and gesture control."],
+            ["Sentiment", "Real-time sentiment analysis for communication."],
+            ["Translation", "Free conversation across borders without barriers."],
+            ["Management", "Centralized management of glass and devices."],
+            ["Monitoring", "Real-time tracking of device status and security."],
+            ["Energy Mgmt", "Smart battery optimization for extended use."],
+            ["Vision AI", "Intelligent spatial and environmental processing."],
+            ["HK Cloud", "Secure cloud storage for personalized data."]
+        ],
+        "Chinese": [
+            ["神经认证", "利用脑波或生物信号的最安全身份验证。"],
+            ["实时同步", "所有设备之间的无缝实时数据同步。"],
+            ["视线支付", "通过视线和手势实现的下一代支付体验。"],
+            ["情感分析", "实时分析对话者的情绪，辅助沟通。"],
+            ["实时翻译", "无语言障碍地与世界自由交谈。"],
+            ["综合管理", "一目了然地管理设备所有状态。"],
+            ["监控追踪", "实时查看设备运行状态和安全系统。"],
+            ["能源优化", "智能电池优化，延长使用时间。"],
+            ["空间感知", "高级空间识别及环境信息处理。"],
+            ["个人云盘", "安全存储个人数据的专属云空间。"]
+        ],
+        "Arabic": [
+            ["المصادقة العصبية", "أكثر المصادقة أماناً باستخدام الإشارات الحيوية."],
+            ["مزامنة فورية", "مزامنة البيانات بسلاسة بين جميع الأجهزة."],
+            ["دفع بصري", "تجربة دفع عبر الإيماءات ونظرات العين."],
+            ["تحليل المشاعر", "تحليل مشاعر الطرف الآخر لتحسين التواصل."],
+            ["ترجمة فورية", "تحدث بحرية دون عوائق لغوية."],
+            ["إدارة شاملة", "إدارة شاملة لحالة الأجهزة المتصلة."],
+            ["مراقبة", "مراقبة فورية لأنظمة الأمان والتشغيل."],
+            ["تحسين الطاقة", "تحسين ذكي للبطارية لضمان فترات أطول."],
+            ["رؤية الذكاء الاصطناعي", "معالجة ذكية للمعلومات المكانية والبيئية."],
+            ["سحابة HK", "سحابة مخصصة لتخزين بياناتك بأمان."]
+        ],
+        "Hindi": [
+            ["न्यूरल ऑथ", "ब्रेनवेव या बायो-सिग्नल का उपयोग करके सुरक्षित प्रमाणीकरण।"],
+            ["सिंक", "सभी उपकरणों के बीच वास्तविक समय डेटा सिंकिंग।"],
+            ["पेमेंट", "नज़र और इशारों के माध्यम से अगली पीढ़ी का भुगतान।"],
+            ["सेंटीमेंट", "बेहतर संचार के लिए वास्तविक समय भावना विश्लेषण।"],
+            ["ट्रांसलेशन", "भाषा की बाधाओं के बिना दुनिया से जुड़ें।"],
+            ["मैनेजमेंट", "स्मार्ट ग्लास का केंद्रीकृत प्रबंधन।"],
+            ["मॉनिटरिंग", "डिवाइस की स्थिति और सुरक्षा की ट्रैकिंग।"],
+            ["एनर्जी Mgmt", "लंबे उपयोग के लिए स्मार्ट बैटरी अनुकूलन।"],
+            ["विजन AI", "स्थानिक और पर्यावरणीय जानकारी का प्रसंस्करण।"],
+            ["HK क्लाउड", "आपके व्यक्तिगत डेटा के लिए सुरक्षित क्लाउड स्टोरेज।"]
+        ],
+        "Spanish": [
+            ["Autenticación Neural", "Autenticación segura mediante ondas cerebrales."],
+            ["Sincronización", "Sincronización de datos en tiempo real."],
+            ["Pago Visual", "Pagos de próxima generación mediante gestos."],
+            ["Análisis de Sentimiento", "Análisis de sentimientos para la comunicación."],
+            ["Traducción", "Conversación libre sin barreras idiomáticas."],
+            ["Gestión", "Gestión centralizada de dispositivos."],
+            ["Monitoreo", "Monitoreo de seguridad en tiempo real."],
+            ["Gestión Energética", "Optimización de batería para mayor duración."],
+            ["Visión AI", "Procesamiento inteligente de información espacial."],
+            ["Nube HK", "Almacenamiento seguro para datos personalizados."]
+        ],
+        "Portuguese": [
+            ["Autenticação Neural", "Autenticação segura via sinais biológicos."],
+            ["Sincronização", "Sincronização de dados em tempo real."],
+            ["Pagamento Visual", "Pagamento de próxima geração via gestos."],
+            ["Análise de Sentimento", "Análise de sentimento para comunicação otimizada."],
+            ["Tradução", "Converse livremente sem barreiras."],
+            ["Gestão", "Gestão centralizada de óculos e dispositivos."],
+            ["Monitoramento", "Monitoramento de segurança em tempo real."],
+            ["Gestão Energética", "Otimização de bateria para uso prolongado."],
+            ["Visão AI", "Processamento inteligente de informações ambientais."],
+            ["Nuvem HK", "Armazenamento em nuvem seguro."]
+        ],
+        "Ukrainian": [
+            ["Нейронна автентифікація", "Найбезпечніша автентифікація через мозок."],
+            ["Синхронізація", "Безшовна синхронізація між усіма пристроями."],
+            ["Оплата поглядом", "Оплата нового покоління жестами."],
+            ["Аналіз настрою", "Аналіз настрою для оптимального спілкування."],
+            ["Переклад", "Спілкуйтеся без мовних бар'єрів."],
+            ["Управління", "Керування окулярами та пристроями."],
+            ["Моніторинг", "Моніторинг статусу та безпеки в реальному часі."],
+            ["Енергоефективність", "Розумна оптимізація заряду."],
+            ["Vision AI", "Обробка просторової інформації."],
+            ["Хмара HK", "Безпечне сховище для персональних даних."]
+        ],
+        "Japanese": [
+            ["ニューラル認証", "脳波を利用した最も安全な本人認証。"],
+            ["リアルタイム同期", "デバイス間でのシームレスな同期。"],
+            ["視線決済", "視線とジェスチャーによる決済。"],
+            ["感情分析", "感情を分析し、最適な対話を支援。"],
+            ["リアルタイム翻訳", "言語の壁を越えた自由な会話。"],
+            ["統合管理", "グラスの状態を一括管理。"],
+            ["状態監視", "稼働状態とセキュリティの確認。"],
+            ["エネルギー効率化", "バッテリー最適化により長時間使用。"],
+            ["空間認識AI", "高度な空間認識と情報処理。"],
+            ["HKクラウド", "個人データを保管する専用クラウド。"]
+        ],
+        "Russian": [
+            ["Нейронная аутентификация", "Безопасная аутентификация через мозг."],
+            ["Синхронизация", "Синхронизация данных между всеми устройствами."],
+            ["Оплата взглядом", "Оплата следующего поколения жестами."],
+            ["Анализ настроения", "Анализ настроения для общения."],
+            ["Перевод", "Свободное общение без барьеров."],
+            ["Управление", "Централизованное управление устройствами."],
+            ["Мониторинг", "Мониторинг безопасности в реальном времени."],
+            ["Энергоэффективность", "Оптимизация заряда для работы."],
+            ["Vision AI", "Интеллектуальная обработка информации."],
+            ["Облако HK", "Безопасное хранилище для данных."]
+        ],
+        "Vietnamese": [
+            ["Xác thực Neural", "Xác thực an toàn bằng tín hiệu sinh học."],
+            ["Đồng bộ hóa", "Đồng bộ hóa dữ liệu giữa các thiết bị."],
+            ["Thanh toán bằng mắt", "Thanh toán thế hệ mới qua cử chỉ."],
+            ["Phân tích cảm xúc", "Phân tích cảm xúc để giao tiếp tối ưu."],
+            ["Dịch thuật", "Trò chuyện không có rào cản ngôn ngữ."],
+            ["Quản lý", "Quản lý tập trung các thiết bị kết nối."],
+            ["Giám sát", "Theo dõi trạng thái và bảo mật."],
+            ["Tối ưu năng lượng", "Tối ưu pin để sử dụng lâu hơn."],
+            ["Vision AI", "Xử lý thông tin không gian thông minh."],
+            ["Đám mây HK", "Lưu trữ đám mây an toàn cho dữ liệu."]
+        ],
+        "Thai": [
+            ["การยืนยันตัวตน", "การยืนยันตัวตนที่ปลอดภัยที่สุด"],
+            ["การซิงค์", "ซิงค์ข้อมูลระหว่างทุกอุปกรณ์"],
+            ["การชำระเงินด้วยสายตา", "การชำระเงินยุคใหม่ผ่านท่าทาง"],
+            ["วิเคราะห์อารมณ์", "วิเคราะห์อารมณ์เพื่อการสื่อสาร"],
+            ["การแปล", "พูดคุยอย่างอิสระไร้กำแพงภาษา"],
+            ["การจัดการ", "จัดการแว่นตาและอุปกรณ์"],
+            ["การตรวจสอบ", "ตรวจสอบความปลอดภัยในเวลาจริง"],
+            ["การจัดการพลังงาน", "เพิ่มประสิทธิภาพแบตเตอรี่"],
+            ["Vision AI", "การประมวลผลข้อมูลอย่างชาญฉลาด"],
+            ["HK Cloud", "พื้นที่เก็บข้อมูลที่ปลอดภัย"]
+        ],
+        "Indonesian": [
+            ["Autentikasi Neural", "Autentikasi aman melalui sinyal bio."],
+            ["Sinkronisasi", "Sinkronisasi data antar perangkat."],
+            ["Pembayaran Visual", "Pembayaran melalui tatapan."],
+            ["Analisis Sentimen", "Analisis untuk komunikasi optimal."],
+            ["Terjemahan", "Bebas mengobrol tanpa hambatan bahasa."],
+            ["Manajemen", "Manajemen terpusat perangkat."],
+            ["Pemantauan", "Pemantauan status secara real-time."],
+            ["Manajemen Energi", "Optimasi baterai cerdas."],
+            ["Vision AI", "Pemrosesan cerdas informasi spasial."],
+            ["Cloud HK", "Penyimpanan cloud aman."]
+        ],
+        "Palestinian": [
+            ["المصادقة العصبية", "أكثر المصادقة أماناً."],
+            ["المزامنة", "مزامنة البيانات فورياً."],
+            ["الدفع البصري", "دفع حديث عبر الإيماءات."],
+            ["تحليل المشاعر", "تحليل فوري للمشاعر."],
+            ["الترجمة", "تحدث بلا حواجز لغوية."],
+            ["الإدارة", "إدارة ذكية للأجهزة."],
+            ["المراقبة", "مراقبة الحالة والأمان."],
+            ["كفاءة الطاقة", "استهلاك ذكي للطاقة."],
+            ["الرؤية الذكية", "معالجة ذكية للبيانات."],
+            ["سحابة HK", "سحابة آمنة لبياناتك."]
+        ]
+    }
+};
 
-    <div class="content-wrapper">
-        <h1 id="title">HK Smart Vision</h1>
-        <h2 id="subtitle">일상을 연결하는 지능형 웨어러블 솔루션</h2>
-        <div id="features"></div>
-        <div id="footer">Support@hkwb.world</div>
-    </div>
+console.log("HK Smart Vision 13개국어 뼈속까지 완벽 로드 완료!");
+</script>
 
-    <script>
-        const contentData = {
-            ko: {
-                t: "HK Smart Vision", s: "일상을 연결하는 지능형 웨어러블 솔루션",
-                f: [
-                    {n: "Neural Auth (생체 인증)", d: "뇌파 또는 생체 신호를 활용한 가장 안전한 본인 인증 시스템입니다."},
-                    {n: "Sync (실시간 동기화)", d: "모든 기기와 끊김 없는 데이터 연결 및 환경 설정을 유지합니다."},
-                    {n: "Payment (간편 결제)", d: "시선과 제스처만으로 이루어지는 차세대 결제 경험을 제공합니다."},
-                    {n: "Sentiment Analysis (감정 분석)", d: "대화 상대의 감정을 실시간으로 파악하여 최적의 소통을 돕습니다."},
-                    {n: "Translation (실시간 번역)", d: "언어 장벽 없이 전 세계 누구와도 자유롭게 대화하세요."},
-                    {n: "Management (통합 관리)", d: "글래스의 모든 상태와 연결 기기를 한눈에 관리합니다."},
-                    {n: "Monitoring (상태 모니터링)", d: "기기 가동 상태와 보안 시스템을 실시간으로 확인합니다."},
-                    {n: "Energy Mgmt (전력 효율화)", d: "스마트한 배터리 최적화로 더 오랜 시간 사용 가능합니다."},
-                    {n: "Data (데이터 분석)", d: "사용 패턴을 학습하여 더욱 개인화된 인사이트를 제공합니다."}
-                ]
-            },
-            en: {
-                t: "HK Smart Vision", s: "Intelligent wearable solution connecting daily life",
-                f: [
-                    {n: "Neural Auth (Biometric)", d: "Safest authentication system using brainwaves or biometrics."},
-                    {n: "Sync (Synchronization)", d: "Seamless data connectivity and settings across all devices."},
-                    {n: "Payment (Easy Payment)", d: "Next-gen payment experience using only gaze and gestures."},
-                    {n: "Sentiment Analysis (Emotion)", d: "Real-time analysis of conversational partners for optimal communication."},
-                    {n: "Translation (Translation)", d: "Communicate freely worldwide without language barriers."},
-                    {n: "Management (Management)", d: "Manage all glasses status and connected devices at a glance."},
-                    {n: "Monitoring (Monitoring)", d: "Real-time check of device operations and security systems."},
-                    {n: "Energy Mgmt (Power Opt)", d: "Smart battery optimization for longer usage time."},
-                    {n: "Data (Data Analysis)", d: "Provides personalized insights by learning usage patterns."}
-                ]
-            }
-        };
-
-        function changeLanguage() {
-            const lang = document.getElementById('langSelector').value;
-            const data = contentData[lang] || contentData['ko'];
-            document.getElementById('title').innerText = data.t;
-            document.getElementById('subtitle').innerText = data.s;
-            let html = "";
-            data.f.forEach(item => {
-                html += `<div class="menu-item"><span class="menu-name">${item.n}</span>${item.d}</div>`;
-            });
-            document.getElementById('features').innerHTML = html;
-        }
-        changeLanguage();
-    </script>
 </body>
 </html>
